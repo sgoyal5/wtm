@@ -4,6 +4,7 @@
 //
 //  Created by Sana Goyal on 7/20/22.
 //
+//did this work
 
 import SwiftUI
 
@@ -13,7 +14,7 @@ struct MotherView: View {
     var body: some View {
         switch viewRouter.currentPage {
         case .page1:
-            edit_profile()
+            profile_my_events()
         case .page2:
             profile_upcoming()
         case .page3:
