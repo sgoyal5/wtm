@@ -11,6 +11,14 @@
 		57F2BC1B28898849007E0349 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F2BC1A28898849007E0349 /* ContentView.swift */; };
 		57F2BC1D2889884E007E0349 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57F2BC1C2889884E007E0349 /* Assets.xcassets */; };
 		57F2BC202889884E007E0349 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57F2BC1F2889884E007E0349 /* Preview Assets.xcassets */; };
+		57F2BC2728898932007E0349 /* MotherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F2BC2628898932007E0349 /* MotherView.swift */; };
+		57F2BC2928898940007E0349 /* ViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F2BC2828898940007E0349 /* ViewRouter.swift */; };
+		57F2BC2B2889894E007E0349 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F2BC2A2889894E007E0349 /* Helper.swift */; };
+		57F2BC2E2889896E007E0349 /* profile my events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F2BC2D2889896E007E0349 /* profile my events.swift */; };
+		57F2BC302889898B007E0349 /* profile invitations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F2BC2F2889898B007E0349 /* profile invitations.swift */; };
+		57F2BC32288989AA007E0349 /* profile upcoming.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F2BC31288989AA007E0349 /* profile upcoming.swift */; };
+		57F2BC34288989BA007E0349 /* create event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F2BC33288989BA007E0349 /* create event.swift */; };
+		57F2BC36288989C4007E0349 /* manage event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F2BC35288989C4007E0349 /* manage event.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +27,14 @@
 		57F2BC1A28898849007E0349 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		57F2BC1C2889884E007E0349 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		57F2BC1F2889884E007E0349 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		57F2BC2628898932007E0349 /* MotherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotherView.swift; sourceTree = "<group>"; };
+		57F2BC2828898940007E0349 /* ViewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewRouter.swift; sourceTree = "<group>"; };
+		57F2BC2A2889894E007E0349 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		57F2BC2D2889896E007E0349 /* profile my events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "profile my events.swift"; sourceTree = "<group>"; };
+		57F2BC2F2889898B007E0349 /* profile invitations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "profile invitations.swift"; sourceTree = "<group>"; };
+		57F2BC31288989AA007E0349 /* profile upcoming.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "profile upcoming.swift"; sourceTree = "<group>"; };
+		57F2BC33288989BA007E0349 /* create event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "create event.swift"; sourceTree = "<group>"; };
+		57F2BC35288989C4007E0349 /* manage event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "manage event.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,7 +68,12 @@
 			isa = PBXGroup;
 			children = (
 				57F2BC1828898849007E0349 /* SANA_WTM_FRONTENDApp.swift */,
-				57F2BC1A28898849007E0349 /* ContentView.swift */,
+				57F2BC2628898932007E0349 /* MotherView.swift */,
+				57F2BC2828898940007E0349 /* ViewRouter.swift */,
+				57F2BC2A2889894E007E0349 /* Helper.swift */,
+				57F2BC33288989BA007E0349 /* create event.swift */,
+				57F2BC35288989C4007E0349 /* manage event.swift */,
+				57F2BC2C28898951007E0349 /* PROFILE */,
 				57F2BC1C2889884E007E0349 /* Assets.xcassets */,
 				57F2BC1E2889884E007E0349 /* Preview Content */,
 			);
@@ -62,9 +83,20 @@
 		57F2BC1E2889884E007E0349 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
+				57F2BC1A28898849007E0349 /* ContentView.swift */,
 				57F2BC1F2889884E007E0349 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		57F2BC2C28898951007E0349 /* PROFILE */ = {
+			isa = PBXGroup;
+			children = (
+				57F2BC2D2889896E007E0349 /* profile my events.swift */,
+				57F2BC2F2889898B007E0349 /* profile invitations.swift */,
+				57F2BC31288989AA007E0349 /* profile upcoming.swift */,
+			);
+			path = PROFILE;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,7 +170,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				57F2BC1B28898849007E0349 /* ContentView.swift in Sources */,
+				57F2BC2728898932007E0349 /* MotherView.swift in Sources */,
+				57F2BC2B2889894E007E0349 /* Helper.swift in Sources */,
 				57F2BC1928898849007E0349 /* SANA_WTM_FRONTENDApp.swift in Sources */,
+				57F2BC32288989AA007E0349 /* profile upcoming.swift in Sources */,
+				57F2BC2E2889896E007E0349 /* profile my events.swift in Sources */,
+				57F2BC34288989BA007E0349 /* create event.swift in Sources */,
+				57F2BC302889898B007E0349 /* profile invitations.swift in Sources */,
+				57F2BC36288989C4007E0349 /* manage event.swift in Sources */,
+				57F2BC2928898940007E0349 /* ViewRouter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

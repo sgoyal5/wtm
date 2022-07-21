@@ -1,17 +1,19 @@
 //
-//  SANA_WTM_FRONTENDApp.swift
-//  SANA WTM FRONTEND
+//  wtm_App.swift
+//  wtm!
 //
-//  Created by Sana Goyal on 7/21/22.
+//  Created by Ananya Garg on 6/17/22.
 //
 
 import SwiftUI
 
 @main
-struct SANA_WTM_FRONTENDApp: App {
+struct wtm_App: App {
+    @StateObject var viewRouter = ViewRouter()
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MotherView().environmentObject(viewRouter)
         }
     }
 }
+
