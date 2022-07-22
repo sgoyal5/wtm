@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C3BA69C288AEA390043FD8E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1C3BA69B288AEA390043FD8E /* GoogleService-Info.plist */; };
 		57F2BC1928898849007E0349 /* SANA_WTM_FRONTENDApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F2BC1828898849007E0349 /* SANA_WTM_FRONTENDApp.swift */; };
 		57F2BC1B28898849007E0349 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F2BC1A28898849007E0349 /* ContentView.swift */; };
 		57F2BC1D2889884E007E0349 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57F2BC1C2889884E007E0349 /* Assets.xcassets */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1C3BA69B288AEA390043FD8E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		57F2BC1528898849007E0349 /* SANA WTM FRONTEND.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SANA WTM FRONTEND.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		57F2BC1828898849007E0349 /* SANA_WTM_FRONTENDApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SANA_WTM_FRONTENDApp.swift; sourceTree = "<group>"; };
 		57F2BC1A28898849007E0349 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 				57F2BC2A2889894E007E0349 /* Helper.swift */,
 				57F2BC33288989BA007E0349 /* create event.swift */,
 				57F2BC35288989C4007E0349 /* manage event.swift */,
+				1C3BA69B288AEA390043FD8E /* GoogleService-Info.plist */,
 				57F2BC2C28898951007E0349 /* PROFILE */,
 				57F2BC1C2889884E007E0349 /* Assets.xcassets */,
 				57F2BC1E2889884E007E0349 /* Preview Content */,
@@ -159,6 +162,7 @@
 			files = (
 				57F2BC202889884E007E0349 /* Preview Assets.xcassets in Resources */,
 				57F2BC1D2889884E007E0349 /* Assets.xcassets in Resources */,
+				1C3BA69C288AEA390043FD8E /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
