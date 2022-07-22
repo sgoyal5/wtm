@@ -23,10 +23,15 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
 @main
 struct wtm_App: App {
+    
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+
     @StateObject var viewRouter = ViewRouter()
+    @StateObject var firestoreManager = FirestoreManager()
+
     var body: some Scene {
         WindowGroup {
-            MotherView().environmentObject(viewRouter)
+            MotherView().environmentObject(viewRouter).environmentObject(firestoreManager)
         }
     }
 }
