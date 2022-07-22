@@ -23,10 +23,7 @@ struct profile_upcoming: View {
         eventUpcomingView(title: "anikas 19th", host: "Anika Bhadriraju Event", location: "lark", description: "bring nice clothes", date: "july 21", starttime: "10 pm")
     ]
     
-    func buttonPressed(){
-        
-        print("button pressed")
-    }
+    
     @State private var upcomingevents: Bool = false
     @State private var invitations: Bool = false
     var isOn = true
