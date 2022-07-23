@@ -35,6 +35,7 @@ struct profile_my_events: View {
     @ObservedObject var model = FirestoreManager()
 
     @EnvironmentObject var viewRouter: ViewRouter
+    @State var event_id = ""
     @State private var event = [
         eventView(title: "anikas 19th", host: "Anika Bhadriraju Event", location: "lark", description: "bring nice clothes", date: "july 21", starttime: "10 pm")
     ]
@@ -193,7 +194,6 @@ struct profile_my_events: View {
                                 
                                 viewRouter.currentPage = .page5
                                 
-                                
                             }){
                                 Image(systemName: "square.and.pencil")
                                     .resizable()
@@ -309,14 +309,12 @@ struct profile_my_events: View {
         
     }
     }
+
 }
+
 
 struct profile_my_events_Previews: PreviewProvider {
     static var previews: some View {
         profile_my_events().environmentObject(ViewRouter())
     }
 }
-
-
-
-

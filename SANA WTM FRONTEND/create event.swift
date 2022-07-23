@@ -146,6 +146,7 @@ struct create_event: View {
                             start_time = currentTime
                             end_time = currentTime
                             description = ""
+                            
                         }){
                             Text("Create Event")
                         }

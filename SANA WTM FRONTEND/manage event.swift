@@ -6,6 +6,9 @@
 //
 
 import SwiftUI
+import FirebaseCore
+import FirebaseFirestore
+
 //struct BubbleList: Identifiable{
 //    let id = UUID()
 //    let bubble: String
@@ -13,6 +16,9 @@ import SwiftUI
 //}
 
 struct manage_event: View {
+    
+    @EnvironmentObject var firestoreManager: FirestoreManager
+
     @EnvironmentObject var viewRouter: ViewRouter
     @State private var bubbles = [
         BubbleList(bubble: "wtm", isselected: false),
@@ -23,8 +29,9 @@ struct manage_event: View {
     @State var eventname = ""
     @State var address = ""
     @State var selectbubble = ""
+    @State var start_time = Date()
+    @State var end_time = Date()
     @State var description = ""
-    
     
     @State private var isExpanding = false
     
@@ -120,7 +127,7 @@ struct manage_event: View {
                 NavigationView{
                     Form{
                         Section{
-                            TextField("Event Name", text: $eventname)
+                            TextField((firestoreManager.event_name), text: $eventname)
                                 
                             TextField("Address", text: $address)
                             DisclosureGroup("Select Bubbles", isExpanded: $isExpanding){
@@ -142,8 +149,8 @@ struct manage_event: View {
                             
                         }
                         Section{
-                            DatePicker("Start", selection: $currentTime)
-                            DatePicker("End", selection: $currentTime, in: Date()...)
+                            DatePicker("Start", selection: $start_time)
+                            DatePicker("End", selection: $end_time, in: Date()...)
                             TextField("Description", text: $description)
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 
@@ -151,6 +158,11 @@ struct manage_event: View {
                         }
                         Button(action: {
                             viewRouter.currentPage = .page2
+                            
+//                            firestoreManager.updateEvent(event_id: event_id, event_name: eventname)
+                            
+                            //firestoreManager.editEvent(event_id)
+                            
                         }){
                             Text("Update Event")
                         }
@@ -163,12 +175,6 @@ struct manage_event: View {
                     
             Spacer()
             Spacer()
-
-            
-            
-            
-                    
-                    
                     
                 .foregroundColor(Color.black)
                 .background(Color.yellow)
@@ -190,6 +196,3 @@ struct manage_event_Previews: PreviewProvider {
         manage_event().environmentObject(ViewRouter())
     }
 }
-
-
-
