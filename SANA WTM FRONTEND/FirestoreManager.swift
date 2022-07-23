@@ -46,7 +46,6 @@ class FirestoreManager: ObservableObject {
     @Published var event_end_time: Date = Date()
     @Published var event_description: String = ""
 
-
     
     @Published var list = [MyEvents]()
     

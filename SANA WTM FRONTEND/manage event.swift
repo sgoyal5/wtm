@@ -188,9 +188,6 @@ struct manage_event: View {
     }
 }
 
-        
-   
-
 struct manage_event_Previews: PreviewProvider {
     static var previews: some View {
         manage_event().environmentObject(ViewRouter())

@@ -26,7 +26,6 @@ struct MyEvents: Identifiable {
     var event_start_time: Date
     var event_end_time: Date
     var event_description: String = ""
-
 }
 
 struct profile_my_events: View {
