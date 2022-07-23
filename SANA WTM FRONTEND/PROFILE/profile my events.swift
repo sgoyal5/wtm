@@ -19,10 +19,20 @@ struct eventView: Identifiable{
     let starttime: String
     
 }
+struct MyEvents: Identifiable {
+    var id: String = ""
+    var event_name: String = ""
+    var event_address: String = ""
+    var event_start_time: Date
+    var event_end_time: Date
+    var event_description: String = ""
+
+}
 
 struct profile_my_events: View {
     
     @EnvironmentObject var firestoreManager: FirestoreManager
+    @ObservedObject var model = FirestoreManager()
 
     @EnvironmentObject var viewRouter: ViewRouter
     @State private var event = [
@@ -175,7 +185,9 @@ struct profile_my_events: View {
             Spacer()
             VStack{
                 NavigationView{
-                    List(event){ eventlist in
+                    
+                    
+                    List(model.list) { item in
                         HStack{
                             Button(action:{
                                 
@@ -192,27 +204,27 @@ struct profile_my_events: View {
                             Spacer()
                             
                             VStack{
-                                Text(eventlist.title + " event")
+                                Text(item.event_name + " event")
                                     .bold()
-                                Text("@ " + eventlist.location)
+                                Text("@" + item.event_address)
                                     .frame(alignment: .leading)
                                     
-                                Text(eventlist.description)
+                                Text(item.event_description)
                             
                             }
+                            
+                            
+                            
                             Spacer()
                             VStack{
                                 Spacer()
-                                Text(eventlist.date)
+                                //Date(item.event_start_time)
                                     
-                                    .textCase(.uppercase)
-                                Text(eventlist.starttime)
+                                //Date(item.event_start_time)
                                     .textCase(.uppercase)
                                 Spacer()
                                 
                             }
-                            
-                                
                                 
                             }
                         
@@ -221,6 +233,61 @@ struct profile_my_events: View {
                 }
                 
             }.background(.black)
+            
+            
+            
+            
+            /* from old test-wtm
+             
+             VStack{
+                 List(model.list) { item in
+                     HStack{
+                         
+                         Button(action:{
+                             buttonPressed()
+                             //model.editMyEvent(eventToUpdate: item)
+                         }){
+                             Image(systemName: "square.and.pencil")
+                                 .resizable()
+                                 .frame(width: 20, height: 20)
+                                 .foregroundColor(.black)
+                                 .padding()
+                             
+                         }
+                         
+ //                        Image(systemName: "square.and.pencil")
+ //                            .resizable()
+ //                            .frame(width: 30, height: 30)
+                         
+                         
+                         
+                         Spacer()
+                         
+                         VStack{
+                             Text(item.event_name)
+                             Text("@" + item.event_address)
+                             Text(item.event_description)
+                         
+                        }
+                         Spacer()
+                         
+                         VStack{
+                             
+                             Text(item.event_start_time, style: .date)
+                                 .padding()
+                             Text(item.event_start_time, style: .time)
+                             Spacer()
+                             Spacer()
+                         }
+                         }
+                 }.background(.black)
+             }.background(.black)
+             
+             */
+            
+            
+            
+            
             
             Spacer()
             

@@ -48,43 +48,43 @@ class FirestoreManager: ObservableObject {
 
 
     
-   // @Published var list = [MyEvents]()
+    @Published var list = [MyEvents]()
     
-//    func fetchMyEvents() {
-//
-//        let db = Firestore.firestore()
-//
-//        db.collection("users").document("tanvi_user").collection("tanvi_events").getDocuments() { (snapshot, error) in
-//
-//            if error == nil {
-//                if let snapshot = snapshot {
-//                    //update list property in main thread, since it causes UI changes
-//                    DispatchQueue.main.async {
-//                        self.list = snapshot.documents.map { d in
-//                            return MyEvents(id: d.documentID,
-//                                event_name: d["event_name"] as? String ?? "",
-//                                event_address: d["event_address"] as? String ?? "",
-//                                event_start_time: d["event_start_time"] as? Date ?? Date.now,
-//                                event_end_time: d["event_end_time"] as? Date ?? Date.now,
-//                                event_description: d["event_description"] as? String ?? "")
-//                        }
-//                    }
-//                    }
-//                }
-//            }
-//    }
+    func fetchMyEvents() {
+
+        let db = Firestore.firestore()
+
+        db.collection("users").document("tanvi_user").collection("tanvi_events").getDocuments() { (snapshot, error) in
+
+            if error == nil {
+                if let snapshot = snapshot {
+                    //update list property in main thread, since it causes UI changes
+                    DispatchQueue.main.async {
+                        self.list = snapshot.documents.map { d in
+                            return MyEvents(id: d.documentID,
+                                event_name: d["event_name"] as? String ?? "",
+                                event_address: d["event_address"] as? String ?? "",
+                                event_start_time: d["event_start_time"] as? Date ?? Date.now,
+                                event_end_time: d["event_end_time"] as? Date ?? Date.now,
+                                event_description: d["event_description"] as? String ?? "")
+                        }
+                    }
+                    }
+                }
+            }
+    }
 //
 //    @Published var updated_event_name: String = ""
 //    @Published var updated_event_address: String = ""
 //    @Published var updated_event_description: String = ""
     
-//    func createEvent(event_name: String, event_address: String, event_start_time: Date, event_end_time: Date, event_description: String) {
-//        let db = Firestore.firestore()
-//
-//        db.collection("users").document("tanvi_user").collection("tanvi_events").addDocument(data: ["event_name" : event_name, "event_address" : event_address, "event_start_time": event_start_time, "event_end_time": event_end_time, "event_description": event_description]) { error in
-//            //check for errors
-//        }
-//    }
+    func createEvent(event_name: String, event_address: String, event_start_time: Date, event_end_time: Date, event_description: String) {
+        let db = Firestore.firestore()
+
+        db.collection("users").document("tanvi_user").collection("tanvi_events").addDocument(data: ["event_name" : event_name, "event_address" : event_address, "event_start_time": event_start_time, "event_end_time": event_end_time, "event_description": event_description]) { error in
+            //check for errors
+        }
+    }
     
 //    func editMyEvent(eventToUpdate: MyEvents) {
 //        let db = Firestore.firestore()
@@ -114,6 +114,6 @@ class FirestoreManager: ObservableObject {
     
     init() {
         fetchUser()
-        //fetchMyEvents()
+        fetchMyEvents()
     }
 }

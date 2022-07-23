@@ -18,6 +18,9 @@ struct eventUpcomingView: Identifiable{
 }
 
 struct profile_upcoming: View {
+    
+    @EnvironmentObject var firestoreManager: FirestoreManager
+
     @EnvironmentObject var viewRouter: ViewRouter
     @State private var eventupcoming = [
         eventUpcomingView(title: "anikas 19th", host: "Anika Bhadriraju Event", location: "lark", description: "bring nice clothes", date: "july 21", starttime: "10 pm")
@@ -95,7 +98,7 @@ struct profile_upcoming: View {
                 
                 
                 VStack{
-                    Text("First Name")
+                    Text("\(firestoreManager.first_name)")
                         .padding(0.9)
                         
                         .font(.system(size:27, weight: .bold))
@@ -103,12 +106,12 @@ struct profile_upcoming: View {
                     
                         
                   
-                    Text("Last Name")
+                    Text("\(firestoreManager.last_name)")
                         .padding(0.9)
                         .font(.system(size:27, weight: .bold))
                         .foregroundColor(.white)
                         
-                    Text("@username")
+                    Text("@\(firestoreManager.username)")
                         .padding(0.75)
                         .font(.system(size:15))
                         .foregroundColor(.white)

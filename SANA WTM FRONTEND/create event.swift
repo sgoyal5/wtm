@@ -13,6 +13,8 @@ struct BubbleList: Identifiable{
 }
 
 struct create_event: View {
+    @EnvironmentObject var firestoreManager: FirestoreManager
+
     @EnvironmentObject var viewRouter: ViewRouter
     @State private var bubbles = [
         BubbleList(bubble: "wtm", isselected: false),
@@ -24,6 +26,8 @@ struct create_event: View {
     @State var address = ""
     @State var selectbubble = ""
     @State var description = ""
+    @State var start_time = Date()
+    @State var end_time = Date()
     
     
     @State private var isExpanding = false
@@ -123,8 +127,8 @@ struct create_event: View {
                         
                     }
                     Section{
-                        DatePicker("Start", selection: $currentTime)
-                        DatePicker("End", selection: $currentTime, in: Date()...)
+                        DatePicker("Start", selection: $start_time)
+                        DatePicker("End", selection: $end_time, in: Date()...)
                         TextField("Description", text: $description)
                             .frame(maxWidth: .infinity, alignment: .leading)
                             
@@ -133,6 +137,15 @@ struct create_event: View {
                     Section{
                         Button(action: {
                             viewRouter.currentPage = .page1
+                            
+                            firestoreManager.createEvent(event_name: eventname, event_address: address, event_start_time: start_time, event_end_time: end_time, event_description: description)
+                            
+                            //clears the text fields on click "create event"
+                            eventname = ""
+                            address = ""
+                            start_time = currentTime
+                            end_time = currentTime
+                            description = ""
                         }){
                             Text("Create Event")
                         }
