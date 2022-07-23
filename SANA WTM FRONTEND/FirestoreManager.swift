@@ -94,6 +94,29 @@ class FirestoreManager: ObservableObject {
         db.collection("users").document("tanvi_user").collection("tanvi_events").document(event_id).updateData(["event_name": event_name, "event_address": event_address, "event_description": event_description])
     }
     
+//    func fetchEvent(event_id: String) {
+//        let db = Firestore.firestore()
+//
+//        let docRef = db.collection("users").document("tanvi_user").collection("tanvi_events").document(event_id)
+//
+//        docRef.getDocument { (document, error) in
+//            guard error == nil else {
+//                print("error", error ?? "")
+//                return
+//            }
+//
+//            if let document = document, document.exists {
+//                let data = document.data()
+//                if let data = data {
+//                    print("data", data)
+//                    self.event_name = data["event_name"] as? String ?? ""
+//                    self.event_address = data["event_address"] as? String ?? ""
+//                    self.event_description = data["event_description"] as? String ?? ""
+//                }
+//            }
+//        }
+//    }
+    
     
 //    func updateEvent(eventToUpdate: String) {
 //        let db = Firestore.firestore()
