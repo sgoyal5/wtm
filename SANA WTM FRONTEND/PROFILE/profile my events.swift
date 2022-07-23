@@ -204,7 +204,7 @@ struct profile_my_events: View {
                             Spacer()
                             
                             VStack{
-                                Text(item.event_name + " event")
+                                Text(item.event_name)
                                     .bold()
                                 Text("@" + item.event_address)
                                     .frame(alignment: .leading)
@@ -213,15 +213,11 @@ struct profile_my_events: View {
                             
                             }
                             
-                            
-                            
                             Spacer()
                             VStack{
                                 Spacer()
-                                //Date(item.event_start_time)
-                                    
-                                //Date(item.event_start_time)
-                                    .textCase(.uppercase)
+                                Text(item.event_start_time, style: .date)
+                                Text(item.event_start_time, style: .time)
                                 Spacer()
                                 
                             }
