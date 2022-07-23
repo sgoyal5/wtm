@@ -36,10 +36,11 @@ struct profile_my_events: View {
     
     @EnvironmentObject var firestoreManager: FirestoreManager
     @ObservedObject var model = FirestoreManager()
+    
+    @State private var image = UIImage()
+    @State private var showSheet = false
 
     @EnvironmentObject var viewRouter: ViewRouter
-    
-    
     
     
     
@@ -103,19 +104,16 @@ struct profile_my_events: View {
                 
                 Spacer()
                 
-                Text("SG")
-                    .frame(width: 35, height: 35)
-                    .padding()
-                    .foregroundColor(.white)
-                    .overlay(
-                       
-                        Circle()
-                            .stroke(.white, lineWidth: 2)
-                            .frame(width: 100, height:100)
-                            .foregroundColor(.white)
-                    
-                            .padding(10)
-                    )
+                Image(uiImage: self.image)
+                        .resizable()
+                        .cornerRadius(50)
+                        .padding(.all, 4)
+                        .frame(width: 100, height: 100)
+                        .background(Color.black.opacity(0.2))
+                        .aspectRatio(contentMode: .fill)
+                        .clipShape(Circle())
+                        .padding(8)
+                
                 Spacer()
               
                
@@ -147,6 +145,19 @@ struct profile_my_events: View {
               Spacer()
                        
             }
+            
+            Text("Change photo")
+                    .font(.system(size: 15, weight: .bold))
+                    .frame(width: 150)
+                    .frame(height: 50)
+                    .cornerRadius(25)
+                    .foregroundColor(Color.white)
+                    .onTapGesture {
+                        showSheet = true
+                    }
+                    .sheet(isPresented: $showSheet) {
+                        ImagePicker(sourceType: .photoLibrary, selectedImage: self.$image)
+                }
           
             
             Text("EVENTS")
@@ -319,6 +330,48 @@ struct profile_my_events: View {
     }
     }
 
+}
+
+struct ImagePicker: UIViewControllerRepresentable {
+    @Environment(\.presentationMode) private var presentationMode
+    var sourceType: UIImagePickerController.SourceType = .photoLibrary
+    @Binding var selectedImage: UIImage
+
+    func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePicker>) -> UIImagePickerController {
+
+        let imagePicker = UIImagePickerController()
+        imagePicker.allowsEditing = false
+        imagePicker.sourceType = sourceType
+        imagePicker.delegate = context.coordinator
+
+        return imagePicker
+    }
+
+    func updateUIViewController(_ uiViewController: UIImagePickerController, context: UIViewControllerRepresentableContext<ImagePicker>) {
+
+    }
+
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
+    }
+
+    final class Coordinator: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+
+        var parent: ImagePicker
+
+        init(_ parent: ImagePicker) {
+            self.parent = parent
+        }
+
+        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+
+            if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+                parent.selectedImage = image
+            }
+
+            parent.presentationMode.wrappedValue.dismiss()
+        }
+    }
 }
 
 
