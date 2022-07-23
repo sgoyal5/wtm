@@ -9,6 +9,10 @@ import SwiftUI
 import FirebaseCore
 import FirebaseFirestore
 
+struct MyVariables {
+    static var event_id = ""
+}
+
 struct eventView: Identifiable{
     let id = UUID()
     let title: String
@@ -34,7 +38,11 @@ struct profile_my_events: View {
     @ObservedObject var model = FirestoreManager()
 
     @EnvironmentObject var viewRouter: ViewRouter
-    @State var event_id = ""
+    
+    
+    
+    
+    
     @State private var event = [
         eventView(title: "anikas 19th", host: "Anika Bhadriraju Event", location: "lark", description: "bring nice clothes", date: "july 21", starttime: "10 pm")
     ]
@@ -192,6 +200,8 @@ struct profile_my_events: View {
                             Button(action:{
                                 
                                 viewRouter.currentPage = .page5
+                                MyVariables.event_id = item.id
+//                                model.updateEvent(eventToUpdate: item)
                                 
                             }){
                                 Image(systemName: "square.and.pencil")

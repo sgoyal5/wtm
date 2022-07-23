@@ -18,12 +18,14 @@ import FirebaseFirestore
 struct manage_event: View {
     
     @EnvironmentObject var firestoreManager: FirestoreManager
+    @ObservedObject var model = FirestoreManager()
+
 
     @EnvironmentObject var viewRouter: ViewRouter
     @State private var bubbles = [
         BubbleList(bubble: "wtm", isselected: false),
     BubbleList(bubble: "tomatoes", isselected: false)
-    
+        
     ]
     
     @State var eventname = ""
@@ -125,9 +127,10 @@ struct manage_event: View {
         
                
                 NavigationView{
+                    
                     Form{
                         Section{
-                            TextField((firestoreManager.event_name), text: $eventname)
+                            TextField(("Event Name"), text: $eventname)
                                 
                             TextField("Address", text: $address)
                             DisclosureGroup("Select Bubbles", isExpanded: $isExpanding){
@@ -144,10 +147,10 @@ struct manage_event: View {
                                     }
                                     }
                                 }
-                                
                             }
                             
                         }
+                        
                         Section{
                             DatePicker("Start", selection: $start_time)
                             DatePicker("End", selection: $end_time, in: Date()...)
@@ -157,7 +160,11 @@ struct manage_event: View {
                             
                         }
                         Button(action: {
-                            viewRouter.currentPage = .page2
+                            
+                            viewRouter.currentPage = .page1
+                            
+                            let event = MyVariables.event_id
+                            firestoreManager.updateEvent(event_id: event, event_name: eventname, event_address: address, event_description: description)
                             
 //                            firestoreManager.updateEvent(event_id: event_id, event_name: eventname)
                             
