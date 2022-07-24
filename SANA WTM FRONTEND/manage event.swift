@@ -173,6 +173,14 @@ struct manage_event: View {
                         }){
                             Text("Update Event")
                         }
+                        
+                        Button(action: {
+                            viewRouter.currentPage = .page2
+                        }){
+                            Text("Delete Event")
+                                .foregroundColor(.red)
+                                .frame(alignment: .center)
+                        }
                             
                         
                     }
