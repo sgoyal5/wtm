@@ -175,7 +175,9 @@ struct manage_event: View {
                         }
                         
                         Button(action: {
-                            viewRouter.currentPage = .page2
+                            let event = MyVariables.event_id
+                            firestoreManager.deleteEvent(event_id: event)
+                            viewRouter.currentPage = .page1
                         }){
                             Text("Delete Event")
                                 .foregroundColor(.red)
