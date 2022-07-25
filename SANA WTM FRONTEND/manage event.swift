@@ -68,7 +68,7 @@ struct manage_event: View {
                     
                     
                 }){
-                    Image(systemName: "arrow.left")
+                    Image(systemName: "xmark")
                         .resizable()
                         .foregroundColor(.white)
                         .aspectRatio(contentMode: .fill)
@@ -115,13 +115,23 @@ struct manage_event: View {
             Spacer()
             HStack{
                 Spacer()
-                Text("Event Details")
-                    .font(.system(size: 15))
-                    .foregroundColor(.white)
+                Button(action: {
+                    viewRouter.currentPage = .page5
+                }){
+                    Text("Event Details")
+                }
+                    .foregroundColor(Color.gray)
+                    .font(.headline)
+                    .padding()
                 Spacer()
-                Text("RSVPS")
-                    .font(.system(size: 15))
-                    .foregroundColor(.gray)
+                Button(action: {
+                    viewRouter.currentPage = .page6
+                }){
+                    Text("RSVPS")
+                }
+                    .foregroundColor(Color.white)
+                    .font(.headline)
+                    .padding()
                 Spacer()
             }
         

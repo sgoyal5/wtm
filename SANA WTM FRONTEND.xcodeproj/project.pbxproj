@@ -18,6 +18,7 @@
 		1C3BA6AD288AEEE30043FD8E /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 1C3BA6AC288AEEE30043FD8E /* FirebaseStorage */; };
 		1C3BA6AF288AEEE30043FD8E /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 1C3BA6AE288AEEE30043FD8E /* FirebaseStorageCombine-Community */; };
 		1C3BA6B1288AEF870043FD8E /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3BA6B0288AEF870043FD8E /* FirestoreManager.swift */; };
+		57C94292288E2708001CEA2A /* rsvp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C94291288E2708001CEA2A /* rsvp.swift */; };
 		57F2BC1928898849007E0349 /* SANA_WTM_FRONTENDApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F2BC1828898849007E0349 /* SANA_WTM_FRONTENDApp.swift */; };
 		57F2BC1B28898849007E0349 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F2BC1A28898849007E0349 /* ContentView.swift */; };
 		57F2BC1D2889884E007E0349 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57F2BC1C2889884E007E0349 /* Assets.xcassets */; };
@@ -35,6 +36,7 @@
 /* Begin PBXFileReference section */
 		1C3BA69B288AEA390043FD8E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1C3BA6B0288AEF870043FD8E /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
+		57C94291288E2708001CEA2A /* rsvp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = rsvp.swift; sourceTree = "<group>"; };
 		57F2BC1528898849007E0349 /* SANA WTM FRONTEND.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SANA WTM FRONTEND.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		57F2BC1828898849007E0349 /* SANA_WTM_FRONTENDApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SANA_WTM_FRONTENDApp.swift; sourceTree = "<group>"; };
 		57F2BC1A28898849007E0349 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 				57F2BC2A2889894E007E0349 /* Helper.swift */,
 				57F2BC33288989BA007E0349 /* create event.swift */,
 				57F2BC35288989C4007E0349 /* manage event.swift */,
+				57C94291288E2708001CEA2A /* rsvp.swift */,
 				1C3BA6B0288AEF870043FD8E /* FirestoreManager.swift */,
 				1C3BA69B288AEA390043FD8E /* GoogleService-Info.plist */,
 				57F2BC2C28898951007E0349 /* PROFILE */,
@@ -212,6 +215,7 @@
 				57F2BC2728898932007E0349 /* MotherView.swift in Sources */,
 				57F2BC2B2889894E007E0349 /* Helper.swift in Sources */,
 				57F2BC1928898849007E0349 /* SANA_WTM_FRONTENDApp.swift in Sources */,
+				57C94292288E2708001CEA2A /* rsvp.swift in Sources */,
 				57F2BC32288989AA007E0349 /* profile upcoming.swift in Sources */,
 				57F2BC2E2889896E007E0349 /* profile my events.swift in Sources */,
 				57F2BC34288989BA007E0349 /* create event.swift in Sources */,

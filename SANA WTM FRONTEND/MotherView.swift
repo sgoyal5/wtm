@@ -25,6 +25,8 @@ struct MotherView: View {
             create_event()
         case .page5:
             manage_event()
+        case .page6:
+            rsvp()
         }
     }
 }
