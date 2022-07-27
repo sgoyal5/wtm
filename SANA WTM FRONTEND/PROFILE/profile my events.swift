@@ -211,47 +211,62 @@ struct profile_my_events: View {
             Spacer()
             VStack{
                 NavigationView{
-                    
-                    List(model.list) { item in
-                        HStack{
-                            Button(action:{
-                                
-                                viewRouter.currentPage = .page5
-                                MyVariables.event_id = item.id
-//                                model.updateEvent(eventToUpdate: item)
-                                
-                            }){
-                                Image(systemName: "square.and.pencil")
-                                    .resizable()
-                                    .frame(width: 30, height: 30)
-                                
-                            }
+                List(model.list, id: \.id) { item in
+                    NavigationLink(destination: Text(item.event_name)) {
                         
-                            Spacer()
-                            
-                            VStack{
-                                Text(item.event_name)
-                                    .bold()
-                                Text("@" + item.event_address)
-                                    .frame(alignment: .leading)
-                                    
-                                Text(item.event_description)
-                            
-                            }
-                            
-                            Spacer()
-                            VStack{
-                                Spacer()
-                                Text(item.event_start_time, style: .date)
-                                Text(item.event_start_time, style: .time)
-                                Spacer()
-                                
-                            }
-                                
-                            }
+                        VStack{
+                            Text(item.event_name)
+                                .bold()
+                            Text("@" + item.event_address)
+                                .frame(alignment: .leading)
+
+                            Text(item.event_description)
+
+                        }
                         
-                    }.background(.black)
+                        
+                    }
                     
+//                    List(model.list) { item in
+//                        HStack{
+//                            Button(action:{
+//
+//                                viewRouter.currentPage = .page5
+//                                MyVariables.event_id = item.id
+////                                model.updateEvent(eventToUpdate: item)
+//
+//                            }){
+//                                Image(systemName: "square.and.pencil")
+//                                    .resizable()
+//                                    .frame(width: 30, height: 30)
+//
+//                            }
+//
+//                            Spacer()
+//
+//                            VStack{
+//                                Text(item.event_name)
+//                                    .bold()
+//                                Text("@" + item.event_address)
+//                                    .frame(alignment: .leading)
+//
+//                                Text(item.event_description)
+//
+//                            }
+//
+//                            Spacer()
+//                            VStack{
+//                                Spacer()
+//                                Text(item.event_start_time, style: .date)
+//                                Text(item.event_start_time, style: .time)
+//                                Spacer()
+//
+//                            }
+//
+//                            }
+//
+//                    }.background(.black)
+                }
                 }
                 
             }.background(.black)

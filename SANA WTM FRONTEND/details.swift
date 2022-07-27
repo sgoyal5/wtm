@@ -8,6 +8,11 @@
 import SwiftUI
 
 struct details: View {
+    
+//    let event: MyEvents
+    
+
+    
     var body: some View {
         Text("This is the details page!")
     }
