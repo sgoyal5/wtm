@@ -63,8 +63,8 @@ class FirestoreManager: ObservableObject {
                             return MyEvents(id: d.documentID,
                                 event_name: d["event_name"] as? String ?? "",
                                 event_address: d["event_address"] as? String ?? "",
-                                event_start_time: d["event_start_time"] as? Date ?? Date.now,
-                                event_end_time: d["event_end_time"] as? Date ?? Date.now,
+                                event_start_time: (d["event_start_time"] as? Timestamp)?.dateValue() ?? Date(),
+                                event_end_time: (d["event_end_time"] as? Timestamp)?.dateValue() ?? Date(),
                                 event_description: d["event_description"] as? String ?? "")
                         }
                     }
@@ -105,6 +105,5 @@ class FirestoreManager: ObservableObject {
     init() {
         fetchUser()
         fetchMyEvents()
-
     }
 }
