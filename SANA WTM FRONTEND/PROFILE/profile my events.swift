@@ -139,7 +139,14 @@ struct profile_my_events: View {
                         .foregroundColor(.white)
                     
                     
-                    
+                    Button(action: {
+                        viewRouter.currentPage = .page7
+                    }){
+                        Text("test details")
+                    }
+                        .foregroundColor(Color.red)
+                        .font(.headline)
+                        .padding()
                 }
                     
               Spacer()
@@ -204,7 +211,6 @@ struct profile_my_events: View {
             Spacer()
             VStack{
                 NavigationView{
-                    
                     
                     List(model.list) { item in
                         HStack{
