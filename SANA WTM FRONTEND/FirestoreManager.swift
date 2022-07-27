@@ -38,7 +38,6 @@ class FirestoreManager: ObservableObject {
         }
     }
     
-    
     @Published var event_id: String = ""
     @Published var event_name: String = ""
     @Published var event_address: String = ""

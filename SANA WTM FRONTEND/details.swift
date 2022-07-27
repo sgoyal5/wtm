@@ -8,18 +8,21 @@
 import SwiftUI
 
 struct details: View {
-    
-//    let event: MyEvents
-    
+    var name: String
+    var address: String
+    var description: String
 
-    
+
     var body: some View {
-        Text("This is the details page!")
+        Text("Event Name: \(name)")
+        Text("Event Address: \(address)")
+        Text("Event Description: \(description)")
+
     }
 }
 
 struct details_Previews: PreviewProvider {
     static var previews: some View {
-        details().environmentObject(ViewRouter())
+        details(name: "", address: "", description: "").environmentObject(ViewRouter())
     }
 }

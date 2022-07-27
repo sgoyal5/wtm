@@ -210,22 +210,42 @@ struct profile_my_events: View {
                                         
             Spacer()
             VStack{
+                
                 NavigationView{
-                List(model.list, id: \.id) { item in
-                    NavigationLink(destination: Text(item.event_name)) {
-                        
-                        VStack{
-                            Text(item.event_name)
-                                .bold()
-                            Text("@" + item.event_address)
-                                .frame(alignment: .leading)
+                    List(model.list, id: \.id) { item in
+//                    ForEach(model.list){ item in
+                        NavigationLink(destination: details(name: item.event_name, address: item.event_address, description: item.event_description)) {
+                            VStack{
+                                Text(item.event_name)
+                                    .bold()
+                                Text("@" + item.event_address)
 
-                            Text(item.event_description)
+                                Text(item.event_description)
 
-                        }
-                        
-                        
+                            }                                      }
+                    //}
                     }
+                    //working kinda
+//                List(model.list, id: \.id) { item in
+//                    NavigationLink(destination: Text(item.event_name)) {
+//
+//                        VStack{
+//                            Text(item.event_name)
+//                                .bold()
+//                            Text("@" + item.event_address)
+//                                .frame(alignment: .leading)
+//
+//                            Text(item.event_description)
+//
+//                        }
+//
+//
+//                    }
+//                }
+                    
+                    
+                    
+                    
                     
 //                    List(model.list) { item in
 //                        HStack{
@@ -266,7 +286,7 @@ struct profile_my_events: View {
 //                            }
 //
 //                    }.background(.black)
-                }
+                
                 }
                 
             }.background(.black)

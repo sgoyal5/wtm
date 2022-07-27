@@ -28,7 +28,7 @@ struct MotherView: View {
         case .page6:
             rsvp()
         case .page7:
-            details()
+            details(name: "", address: "", description: "")
         }
     }
 }
