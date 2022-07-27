@@ -25,10 +25,8 @@ struct details: View {
         Text("Event Address: \(address)")
         Text("Event Description: \(description)")
             
-            
         }
     }
-        
     }
 }
 
