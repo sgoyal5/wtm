@@ -221,9 +221,8 @@ struct profile_my_events: View {
                                 Text("@" + item.event_address)
 
                                 Text(item.event_description)
-
-                            }                                      }
-                    //}
+                            }
+                        }
                     }
                     //working kinda
 //                List(model.list, id: \.id) { item in

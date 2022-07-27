@@ -14,10 +14,21 @@ struct details: View {
 
 
     var body: some View {
+        
+        ZStack{
+            Color(red: 0.08235, green: 0.12549, blue: 0.12941)
+                .ignoresSafeArea()
+         
+        
+        VStack{
         Text("Event Name: \(name)")
         Text("Event Address: \(address)")
         Text("Event Description: \(description)")
-
+            
+            
+        }
+    }
+        
     }
 }
 
