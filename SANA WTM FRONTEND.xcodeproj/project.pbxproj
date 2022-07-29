@@ -30,7 +30,6 @@
 		57F2BC302889898B007E0349 /* profile invitations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F2BC2F2889898B007E0349 /* profile invitations.swift */; };
 		57F2BC32288989AA007E0349 /* profile upcoming.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F2BC31288989AA007E0349 /* profile upcoming.swift */; };
 		57F2BC34288989BA007E0349 /* create event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F2BC33288989BA007E0349 /* create event.swift */; };
-		57F2BC36288989C4007E0349 /* manage event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F2BC35288989C4007E0349 /* manage event.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,7 +48,6 @@
 		57F2BC2F2889898B007E0349 /* profile invitations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "profile invitations.swift"; sourceTree = "<group>"; };
 		57F2BC31288989AA007E0349 /* profile upcoming.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "profile upcoming.swift"; sourceTree = "<group>"; };
 		57F2BC33288989BA007E0349 /* create event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "create event.swift"; sourceTree = "<group>"; };
-		57F2BC35288989C4007E0349 /* manage event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "manage event.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,7 +94,6 @@
 				57F2BC2828898940007E0349 /* ViewRouter.swift */,
 				57F2BC2A2889894E007E0349 /* Helper.swift */,
 				57F2BC33288989BA007E0349 /* create event.swift */,
-				57F2BC35288989C4007E0349 /* manage event.swift */,
 				57C94291288E2708001CEA2A /* rsvp.swift */,
 				1C3BA6B0288AEF870043FD8E /* FirestoreManager.swift */,
 				1C3BA69B288AEA390043FD8E /* GoogleService-Info.plist */,
@@ -220,7 +217,6 @@
 				57F2BC2E2889896E007E0349 /* profile my events.swift in Sources */,
 				57F2BC34288989BA007E0349 /* create event.swift in Sources */,
 				57F2BC302889898B007E0349 /* profile invitations.swift in Sources */,
-				57F2BC36288989C4007E0349 /* manage event.swift in Sources */,
 				57F2BC2928898940007E0349 /* ViewRouter.swift in Sources */,
 				1C3BA6B1288AEF870043FD8E /* FirestoreManager.swift in Sources */,
 			);

@@ -24,9 +24,8 @@ struct MotherView: View {
         case .page4:
             create_event()
         case .page5:
-            manage_event()
-        case .page6:
             rsvp()
+        default: profile_my_events()
         }
     }
 }

@@ -87,7 +87,7 @@ struct rsvp: View {
             HStack{
                 Spacer()
                 Button(action: {
-                    viewRouter.currentPage = .page5
+//                    viewRouter.currentPage = .page5
                 }){
                     Text("Event Details")
                 }
@@ -96,7 +96,7 @@ struct rsvp: View {
                     .padding()
                 Spacer()
                 Button(action: {
-                    viewRouter.currentPage = .page6
+                    viewRouter.currentPage = .page5
                 }){
                     Text("RSVPS")
                 }
