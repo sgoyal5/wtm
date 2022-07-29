@@ -159,7 +159,6 @@ struct create_event: View {
                 .foregroundColor(Color.black)
                 .background(Color.yellow)
             
-                
             
             
         }

@@ -218,8 +218,10 @@ struct profile_my_events: View {
                                     .resizable()
                                     .frame(width: 30, height: 30)
                                 
+//                            }.fullScreenCover(isPresented: $showingSheet) {
                             }.sheet(isPresented: $showingSheet) {
-                                SheetView()
+
+                                SheetView(id: item.id, name: item.event_name, address: item.event_address, description: item.event_description)
                             }
                         
                             Spacer()
@@ -328,14 +330,21 @@ struct SheetView: View {
 
     @EnvironmentObject var viewRouter: ViewRouter
     
-    @State var eventname = ""
-    @State var address = ""
+    
+    //variables to get form pre-filled
+    @State var id: String
+    @State var formaddress: String
     @State var selectbubble = ""
     @State var start_time = Date()
     @State var end_time = Date()
-    @State var description = ""
+    @State var formdescription: String
     
     @State private var isExpanding = false
+//    init(letter: String) {
+//        self.fullText = list[letter]!
+//    }
+
+        
     
     //calendar view variables
     @State var currentTime = Date()
@@ -351,6 +360,15 @@ struct SheetView: View {
         return  "\(day)-\(month)-\(year) (\(hour): \(minute))"
     }
     
+    
+    @State var eventname: String
+    init(id: String, name: String, address: String, description: String) {
+        _id = State(initialValue: id)
+        _eventname = State(initialValue: name)
+        _formaddress = State(initialValue: address)
+        _formdescription = State(initialValue: description)
+        }
+    
     var body: some View {
         
         ZStack{
@@ -359,45 +377,33 @@ struct SheetView: View {
         
         VStack{
             Spacer()
+            Spacer()
+            Spacer()
+
             Text("Manage your Event")
                 .foregroundColor(.white)
                 .bold()
             Spacer()
-            Spacer()
-            Spacer()
-            HStack{
-                Spacer()
-        
+
                     Text("Event Details")
                     .foregroundColor(Color.white)
+                    .frame(alignment: .center)
                     .font(.headline)
-                    .padding().frame(alignment: .center)
-                Spacer()
-                
-//                    Text("RSVPS")
-//                    .foregroundColor(Color.white)
-//                    .font(.headline)
-//                    .padding()
-                Spacer()
-            }
+                    .padding()
 
                 NavigationView{
                     Form{
                         Section{
-                            TextField(("Event Name"), text: $eventname)
-                            TextField("Address", text: $address)
-                            TextField("Description", text: $description)
-
-                            
+                            TextField("", text:$eventname)
+                            TextField("", text: $formaddress)
+                            TextField("", text: $formdescription)
                         }
-                        
                         
                         Button(action: {
                             dismiss()
-//                            viewRouter.currentPage = .page1
-                            
-                            let event = MyVariables.event_id
-                            firestoreManager.updateEvent(event_id: event, event_name: eventname, event_address: address, event_description: description)
+                            viewRouter.currentPage = .page1
+
+                            firestoreManager.updateEvent(event_id: id, event_name: eventname, event_address: formaddress, event_description: formdescription)
                             
 //                            firestoreManager.updateEvent(event_id: event_id, event_name: eventname)
                             
@@ -408,21 +414,16 @@ struct SheetView: View {
                         }
                         
                         Button(action: {
-                            let event = MyVariables.event_id
-                            firestoreManager.deleteEvent(event_id: event)
-//                            viewRouter.currentPage = .page1
+                            firestoreManager.deleteEvent(event_id: id)
+                            viewRouter.currentPage = .page1
                             dismiss()
                         }){
                             Text("Delete Event")
                                 .foregroundColor(.red)
                                 .frame(alignment: .center)
                         }
-                            
-                        
                     }
                     }
-                    
-                   
                     
             Spacer()
             Spacer()
