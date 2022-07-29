@@ -9,10 +9,6 @@ import SwiftUI
 import FirebaseCore
 import FirebaseFirestore
 
-struct MyVariables {
-    static var event_id = ""
-}
-
 struct MyEvents: Identifiable {
     var id: String = ""
     var event_name: String = ""
@@ -23,7 +19,7 @@ struct MyEvents: Identifiable {
 }
 
 struct profile_my_events: View {
-    @State private var showingSheet = false
+    @State private var showingEditSheet = false
     
     @EnvironmentObject var firestoreManager: FirestoreManager
     @ObservedObject var model = FirestoreManager()
@@ -192,10 +188,7 @@ struct profile_my_events: View {
                     List(model.list) { item in
                         HStack{
                             Button(action:{
-                                showingSheet.toggle()
-//                                viewRouter.currentPage = .page5
-                                MyVariables.event_id = item.id
-//                                model.updateEvent(eventToUpdate: item)
+                                showingEditSheet.toggle()
                                 
                             }){
                                 Image(systemName: "square.and.pencil")
@@ -203,9 +196,8 @@ struct profile_my_events: View {
                                     .frame(width: 30, height: 30)
                                 
 //                            }.fullScreenCover(isPresented: $showingSheet) {
-                            }.sheet(isPresented: $showingSheet) {
-
-                                SheetView(id: item.id, name: item.event_name, address: item.event_address, start_time: item.event_start_time, end_time: item.event_end_time, description: item.event_description)
+                            }.sheet(isPresented: $showingEditSheet) {
+                                EditSheetView(id: item.id, name: item.event_name, address: item.event_address, start_time: item.event_start_time, end_time: item.event_end_time, description: item.event_description)
                             }
                         
                             Spacer()
@@ -305,116 +297,6 @@ struct ImagePicker: UIViewControllerRepresentable {
         }
     }
 }
-
-struct SheetView: View {
-    @Environment(\.dismiss) var dismiss
-    
-    @EnvironmentObject var firestoreManager: FirestoreManager
-    @ObservedObject var model = FirestoreManager()
-    @EnvironmentObject var viewRouter: ViewRouter
-    
-    
-
-    @State var id: String
-    @State var eventname: String
-    @State var formaddress: String
-    @State var selectbubble = ""
-    @State var start_time: Date
-    @State var end_time: Date
-    @State var formdescription: String
-    
-    init(id: String, name: String, address: String, start_time: Date, end_time: Date, description: String) {
-        _id = State(initialValue: id)
-        _eventname = State(initialValue: name)
-        _formaddress = State(initialValue: address)
-        _start_time = State(initialValue: start_time)
-        _end_time = State(initialValue: end_time)
-        _formdescription = State(initialValue: description)
-        }
-    
-    
-    @State private var isExpanding = false
-
-    
-    //calendar view variables
-    @State var currentTime = Date()
-    var  closedRange = Calendar.current.date(byAdding: .year, value:  -1, to: Date())!
-    func formatDate()->  String{
-        let components = Calendar.current.dateComponents([.hour,.minute, .day, .month, .year], from: currentTime)
-        let hour = components.hour ?? 0
-        let minute = components.minute ?? 0
-        let day = components.day ?? 0
-        let month = components.month ?? 0
-        let year = components.year ?? 0
-        
-        return  "\(day)-\(month)-\(year) (\(hour): \(minute))"
-    }
-   
-    
-    var body: some View {
-        
-        ZStack{
-            Color(red: 0.08235, green: 0.12549, blue: 0.12941)
-                .ignoresSafeArea()
-        
-        VStack{
-            Spacer()
-            Spacer()
-            Spacer()
-
-            Text("Manage your Event")
-                .foregroundColor(.white)
-                .bold()
-            Spacer()
-
-                    Text("Event Details")
-                    .foregroundColor(Color.white)
-                    .frame(alignment: .center)
-                    .font(.headline)
-                    .padding()
-
-                NavigationView{
-                    Form{
-                        Section{
-                            TextField("Event Name: ", text:$eventname)
-                            TextField("Address: ", text: $formaddress)
-                            DatePicker("Start", selection: $start_time)
-                            DatePicker("End", selection: $end_time)
-                            TextField("Description", text: $formdescription)
-                        }
-                        
-                        Button(action: {
-                            dismiss()
-                            viewRouter.currentPage = .page1
-                            firestoreManager.updateEvent(event_id: id, event_name: eventname, event_address: formaddress, event_start_time: start_time, event_end_time: end_time, event_description: formdescription)
-                            
-                        }){
-                            Text("Update Event")
-                        }
-                        
-                        Button(action: {
-                            firestoreManager.deleteEvent(event_id: id)
-                            viewRouter.currentPage = .page1
-                            dismiss()
-                        }){
-                            Text("Delete Event")
-                                .foregroundColor(.red)
-                                .frame(alignment: .center)
-                        }
-                    }
-                    }
-                    
-            Spacer()
-            Spacer()
-                    
-                .foregroundColor(Color.black)
-                .background(Color.yellow)
-        }
-        }
-    
-    }
-}
-
 
 struct profile_my_events_Previews: PreviewProvider {
     static var previews: some View {
