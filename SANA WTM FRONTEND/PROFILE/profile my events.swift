@@ -13,16 +13,6 @@ struct MyVariables {
     static var event_id = ""
 }
 
-struct eventView: Identifiable{
-    let id = UUID()
-    let title: String
-    let host: String
-    let location: String
-    let description: String
-    let date: String
-    let starttime: String
-    
-}
 struct MyEvents: Identifiable {
     var id: String = ""
     var event_name: String = ""
@@ -42,12 +32,6 @@ struct profile_my_events: View {
     @State private var showSheet = false
 
     @EnvironmentObject var viewRouter: ViewRouter
-    
-    
-    
-    @State private var event = [
-        eventView(title: "anikas 19th", host: "Anika Bhadriraju Event", location: "lark", description: "bring nice clothes", date: "july 21", starttime: "10 pm")
-    ]
     
     func buttonPressed(){
         
@@ -221,7 +205,7 @@ struct profile_my_events: View {
 //                            }.fullScreenCover(isPresented: $showingSheet) {
                             }.sheet(isPresented: $showingSheet) {
 
-                                SheetView(id: item.id, name: item.event_name, address: item.event_address, description: item.event_description)
+                                SheetView(id: item.id, name: item.event_name, address: item.event_address, start_time: item.event_start_time, end_time: item.event_end_time, description: item.event_description)
                             }
                         
                             Spacer()
@@ -327,24 +311,30 @@ struct SheetView: View {
     
     @EnvironmentObject var firestoreManager: FirestoreManager
     @ObservedObject var model = FirestoreManager()
-
     @EnvironmentObject var viewRouter: ViewRouter
     
     
-    //variables to get form pre-filled
+
     @State var id: String
+    @State var eventname: String
     @State var formaddress: String
     @State var selectbubble = ""
-    @State var start_time = Date()
-    @State var end_time = Date()
+    @State var start_time: Date
+    @State var end_time: Date
     @State var formdescription: String
     
+    init(id: String, name: String, address: String, start_time: Date, end_time: Date, description: String) {
+        _id = State(initialValue: id)
+        _eventname = State(initialValue: name)
+        _formaddress = State(initialValue: address)
+        _start_time = State(initialValue: start_time)
+        _end_time = State(initialValue: end_time)
+        _formdescription = State(initialValue: description)
+        }
+    
+    
     @State private var isExpanding = false
-//    init(letter: String) {
-//        self.fullText = list[letter]!
-//    }
 
-        
     
     //calendar view variables
     @State var currentTime = Date()
@@ -359,15 +349,7 @@ struct SheetView: View {
         
         return  "\(day)-\(month)-\(year) (\(hour): \(minute))"
     }
-    
-    
-    @State var eventname: String
-    init(id: String, name: String, address: String, description: String) {
-        _id = State(initialValue: id)
-        _eventname = State(initialValue: name)
-        _formaddress = State(initialValue: address)
-        _formdescription = State(initialValue: description)
-        }
+   
     
     var body: some View {
         
@@ -396,18 +378,15 @@ struct SheetView: View {
                         Section{
                             TextField("", text:$eventname)
                             TextField("", text: $formaddress)
+                            
+                            
                             TextField("", text: $formdescription)
                         }
                         
                         Button(action: {
                             dismiss()
                             viewRouter.currentPage = .page1
-
                             firestoreManager.updateEvent(event_id: id, event_name: eventname, event_address: formaddress, event_description: formdescription)
-                            
-//                            firestoreManager.updateEvent(event_id: event_id, event_name: eventname)
-                            
-                            //firestoreManager.editEvent(event_id)
                             
                         }){
                             Text("Update Event")
@@ -430,8 +409,6 @@ struct SheetView: View {
                     
                 .foregroundColor(Color.black)
                 .background(Color.yellow)
-
-            
         }
         }
     
