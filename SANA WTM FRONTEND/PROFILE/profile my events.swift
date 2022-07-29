@@ -376,17 +376,17 @@ struct SheetView: View {
                 NavigationView{
                     Form{
                         Section{
-                            TextField("", text:$eventname)
-                            TextField("", text: $formaddress)
-                            
-                            
-                            TextField("", text: $formdescription)
+                            TextField("Event Name: ", text:$eventname)
+                            TextField("Address: ", text: $formaddress)
+                            DatePicker("Start", selection: $start_time)
+                            DatePicker("End", selection: $end_time)
+                            TextField("Description", text: $formdescription)
                         }
                         
                         Button(action: {
                             dismiss()
                             viewRouter.currentPage = .page1
-                            firestoreManager.updateEvent(event_id: id, event_name: eventname, event_address: formaddress, event_description: formdescription)
+                            firestoreManager.updateEvent(event_id: id, event_name: eventname, event_address: formaddress, event_start_time: start_time, event_end_time: end_time, event_description: formdescription)
                             
                         }){
                             Text("Update Event")

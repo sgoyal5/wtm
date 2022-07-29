@@ -88,10 +88,10 @@ class FirestoreManager: ObservableObject {
 //    @Published var updated_event_description: String = ""
 
 //    working but all the fields need to be entered or else they are erased
-    func updateEvent(event_id: String, event_name: String, event_address: String, event_description: String) {
+    func updateEvent(event_id: String, event_name: String, event_address: String, event_start_time: Date, event_end_time: Date, event_description: String) {
         let db = Firestore.firestore()
 
-        db.collection("users").document("tanvi_user").collection("tanvi_events").document(event_id).updateData(["event_name": event_name, "event_address": event_address, "event_description": event_description])
+        db.collection("users").document("tanvi_user").collection("tanvi_events").document(event_id).updateData(["event_name": event_name, "event_address": event_address, "event_start_time": event_start_time, "event_end_time": event_end_time, "event_description": event_description])
     }
     
 
