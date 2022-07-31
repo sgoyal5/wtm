@@ -15,6 +15,7 @@ class FirestoreManager: ObservableObject {
     @Published var last_name: String = ""
     @Published var username: String = ""
 
+    //fetches user to display profile information
     func fetchUser() {
         let db = Firestore.firestore()
 
@@ -38,6 +39,7 @@ class FirestoreManager: ObservableObject {
         }
     }
     
+    @Published var myeventslist = [MyEvents]()
     
     @Published var event_id: String = ""
     @Published var event_name: String = ""
@@ -45,10 +47,9 @@ class FirestoreManager: ObservableObject {
     @Published var event_start_time: Date = Date()
     @Published var event_end_time: Date = Date()
     @Published var event_description: String = ""
-
     
-    @Published var myeventslist = [MyEvents]()
     
+    //fetches events user has created
     func fetchMyEvents() {
 
         let db = Firestore.firestore()
@@ -82,6 +83,8 @@ class FirestoreManager: ObservableObject {
     @Published var inv_end_time: Date = Date()
     @Published var inv_description: String = ""
     
+    
+    //fetches events user has been invited to
     func fetchInvitations() {
 
         let db = Firestore.firestore()
@@ -107,6 +110,7 @@ class FirestoreManager: ObservableObject {
     }
     
     
+    //sends new event data to firestore, creates new document
     func createEvent(event_name: String, event_address: String, event_start_time: Date, event_end_time: Date, event_description: String) {
         let db = Firestore.firestore()
         
@@ -117,6 +121,7 @@ class FirestoreManager: ObservableObject {
         }
     }
     
+    //updates existing document in firestore
     func updateEvent(event_id: String, event_name: String, event_address: String, event_start_time: Date, event_end_time: Date, event_description: String) {
         let db = Firestore.firestore()
 
@@ -124,6 +129,7 @@ class FirestoreManager: ObservableObject {
     }
     
 
+    //deletes document in firestore
     func deleteEvent(event_id: String) {
         
         let db = Firestore.firestore()
