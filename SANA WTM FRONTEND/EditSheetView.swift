@@ -8,7 +8,8 @@
 import SwiftUI
 import FirebaseCore
 import FirebaseFirestore
-
+    
+    
 struct EditSheetView: View {
     @Environment(\.dismiss) var dismiss
     
@@ -34,7 +35,6 @@ struct EditSheetView: View {
         }
     
     @State private var isExpanding = false
-
     
     //calendar view variables
     @State var currentTime = Date()
@@ -96,14 +96,16 @@ struct EditSheetView: View {
                         }
                     }
 
+            Spacer()
+            Spacer()
+            
             Text("RSVPs")
                 .foregroundColor(.white)
                 .bold()
             
             Spacer()
             
-//                    }
-                    
+            
                         
         }
         }
