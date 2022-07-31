@@ -6,28 +6,40 @@
 //
 
 import SwiftUI
-struct BubbleList: Identifiable{
-    let id = UUID()
-    let bubble: String
+import FirebaseCore
+import FirebaseFirestore
+
+//struct BubbleList: Identifiable{
+//    let id = UUID()
+//    let bubble: String
+//    var isselected: Bool
+//}
+
+struct Bubbles: Identifiable {
+    var id: String = ""
+    var bubble_name: String = ""
     var isselected: Bool
+    var selectedList = [String]()
 }
 
 struct create_event: View {
     @EnvironmentObject var firestoreManager: FirestoreManager
+    @ObservedObject var model = FirestoreManager()
+
 
     @EnvironmentObject var viewRouter: ViewRouter
-    @State private var bubbles = [
-        BubbleList(bubble: "wtm", isselected: false),
-    BubbleList(bubble: "tomatoes", isselected: false)
-    
-    ]
+//    @State private var bubbles = [
+//        BubbleList(bubble: "wtm", isselected: false),
+//    BubbleList(bubble: "tomatoes", isselected: false)
+//
+//    ]
     
     @State var eventname = ""
     @State var address = ""
-    @State var selectbubble = ""
     @State var description = ""
     @State var start_time = Date()
     @State var end_time = Date()
+    @State var bubbles_invited = [Bubbles]()
     
     
     @State private var isExpanding = false
@@ -67,10 +79,8 @@ struct create_event: View {
                         .aspectRatio(contentMode: .fill)
                         .frame(width:25, height: 25)
                         .padding()
-                    
                 }
                     
-                   
     
                 Spacer()
                 
@@ -108,19 +118,24 @@ struct create_event: View {
                         TextField("Event Name", text: $eventname)
                             
                         TextField("Address", text: $address)
+//                        Text("Bubbles Invited: \()")
                         DisclosureGroup("Select Bubbles", isExpanded: $isExpanding){
+                            
                             VStack{
-                                List($bubbles){ $bubble in
+                                List(model.bubbleslist){ bubble in
                                     HStack{
                                         Image(systemName: bubble.isselected ?  "checkmark.square"  : "square")
                                             .onTapGesture {
-                                                bubble.isselected.toggle()
+//                                                bubble.isselected.toggle()
+//                                                selectedList.append(bubble.bubble_name)
                                             }
-                                        Text(bubble.bubble)
+                                        
+                                        Text(bubble.bubble_name)
                                             .frame(maxWidth: .infinity, alignment: .leading)
-                                    
+
                                 }
                                 }
+                                
                             }
                             
                         }
@@ -147,6 +162,7 @@ struct create_event: View {
                             end_time = currentTime
                             description = ""
                             
+                            
                         }){
                             Text("Create Event")
                         }
@@ -158,9 +174,6 @@ struct create_event: View {
                 }
                 .foregroundColor(Color.black)
                 .background(Color.yellow)
-            
-            
-            
         }
         }
     

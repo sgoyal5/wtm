@@ -137,9 +137,39 @@ class FirestoreManager: ObservableObject {
         db.collection("users").document("tanvi_user").collection("tanvi_events").document(event_id).delete()
     }
     
+    
+    @Published var bubbleslist = [Bubbles]()
+    
+    @Published var bubble_id: String = ""
+    @Published var bubble_name: String = ""
+    @Published var isselected: Bool = false
+
+    
+    func fetchMyBubbles() {
+
+        let db = Firestore.firestore()
+
+        db.collection("users").document("tanvi_user").collection("tanvi_bubbles").getDocuments() { (snapshot, error) in
+
+            if error == nil {
+                if let snapshot = snapshot {
+                    //update list property in main thread, since it causes UI changes
+                    DispatchQueue.main.async {
+                        self.bubbleslist = snapshot.documents.map { d in
+                            return Bubbles(id: d.documentID,
+                                bubble_name: d["bubble_name"] as? String ?? "",
+                                isselected: d["isselected"] as? Bool ?? false
+                            ) }
+                    }
+                    }
+                }
+            }
+    }
+    
     init() {
         fetchUser()
         fetchMyEvents()
         fetchInvitations()
+        fetchMyBubbles()
     }
 }
