@@ -6,26 +6,25 @@
 //
 
 import SwiftUI
-struct eventInvitationsView: Identifiable{
-    let id = UUID()
-    let title: String
-    let host: String
-    let location: String
-    let description: String
-    let date: String
-    let starttime: String
-    
+import FirebaseCore
+import FirebaseFirestore
+
+
+struct Invitations: Identifiable {
+    var id: String = ""
+    var inv_name: String = ""
+    var inv_address: String = ""
+    var inv_start_time: Date
+    var inv_end_time: Date
+    var inv_description: String = ""
 }
 
 struct profile_invitations: View {
-    
-    @EnvironmentObject var firestoreManager: FirestoreManager
+    @State private var showingDetailSheet = false
 
+    @EnvironmentObject var firestoreManager: FirestoreManager
+    @ObservedObject var model = FirestoreManager()
     @EnvironmentObject var viewRouter: ViewRouter
-    @State private var eventinvitations = [
-        eventInvitationsView(title: "anikas 19th", host: "Anika Bhadriraju Event", location: "lark", description: "bring nice clothes", date: "july 21", starttime: "10 pm")
-    ]
-    
    
     @State private var upcomingevents: Bool = false
     @State private var invitations: Bool = false
@@ -169,34 +168,41 @@ struct profile_invitations: View {
             Spacer()
             VStack{
                 NavigationView{
-                    List(eventinvitations){ eventlist in
+                
+                    List(model.invitationslist) { item in
                         HStack{
-                            
+                            Button(action:{
+                                showingDetailSheet.toggle()
+                                
+                            }){
+                                Text("View Details")
+                                    .frame(width: 30, height: 30)
+                                
+//                            }.fullScreenCover(isPresented: $showingSheet) {
+                            }.sheet(isPresented: $showingDetailSheet) {
+                                InvitationsDetailView(id: item.id, inv_eventname: item.inv_name, inv_address: item.inv_address, inv_start_time: item.inv_start_time, inv_end_time: item.inv_end_time, inv_description: item.inv_description)
+                            }
                         
                             Spacer()
                             
                             VStack{
-                                Text(eventlist.title + " event")
+                                Text(item.inv_name)
                                     .bold()
-                                Text("@ " + eventlist.location)
+                                Text("@" + item.inv_address)
                                     .frame(alignment: .leading)
                                     
-                                Text(eventlist.description)
+                                Text(item.inv_description)
                             
                             }
+                            
                             Spacer()
                             VStack{
                                 Spacer()
-                                Text(eventlist.date)
-                                    
-                                    .textCase(.uppercase)
-                                Text(eventlist.starttime)
-                                    .textCase(.uppercase)
+                                Text(item.inv_start_time, style: .date)
+                                Text(item.inv_start_time, style: .time)
                                 Spacer()
                                 
                             }
-                            
-                                
                                 
                             }
                         

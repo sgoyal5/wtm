@@ -47,7 +47,7 @@ class FirestoreManager: ObservableObject {
     @Published var event_description: String = ""
 
     
-    @Published var list = [MyEvents]()
+    @Published var myeventslist = [MyEvents]()
     
     func fetchMyEvents() {
 
@@ -59,7 +59,7 @@ class FirestoreManager: ObservableObject {
                 if let snapshot = snapshot {
                     //update list property in main thread, since it causes UI changes
                     DispatchQueue.main.async {
-                        self.list = snapshot.documents.map { d in
+                        self.myeventslist = snapshot.documents.map { d in
                             return MyEvents(id: d.documentID,
                                 event_name: d["event_name"] as? String ?? "",
                                 event_address: d["event_address"] as? String ?? "",
@@ -73,6 +73,40 @@ class FirestoreManager: ObservableObject {
             }
     }
     
+    @Published var invitationslist = [Invitations]()
+    
+    @Published var inv_id: String = ""
+    @Published var inv_name: String = ""
+    @Published var inv_address: String = ""
+    @Published var inv_start_time: Date = Date()
+    @Published var inv_end_time: Date = Date()
+    @Published var inv_description: String = ""
+    
+    func fetchInvitations() {
+
+        let db = Firestore.firestore()
+
+        db.collection("users").document("tanvi_user").collection("invitations").getDocuments() { (snapshot, error) in
+
+            if error == nil {
+                if let snapshot = snapshot {
+                    //update list property in main thread, since it causes UI changes
+                    DispatchQueue.main.async {
+                        self.invitationslist = snapshot.documents.map { d in
+                            return Invitations(id: d.documentID,
+                                inv_name: d["inv_name"] as? String ?? "",
+                                inv_address: d["inv_address"] as? String ?? "",
+                                inv_start_time: (d["inv_start_time"] as? Timestamp)?.dateValue() ?? Date(),
+                                inv_end_time: (d["inv_end_time"] as? Timestamp)?.dateValue() ?? Date(),
+                                inv_description: d["inv_description"] as? String ?? "")
+                        }
+                    }
+                    }
+                }
+            }
+    }
+    
+    
     func createEvent(event_name: String, event_address: String, event_start_time: Date, event_end_time: Date, event_description: String) {
         let db = Firestore.firestore()
         
@@ -83,11 +117,6 @@ class FirestoreManager: ObservableObject {
         }
     }
     
-//    @Published var updated_event_name: String = ""
-//    @Published var updated_event_address: String = ""
-//    @Published var updated_event_description: String = ""
-
-//    working but all the fields need to be entered or else they are erased
     func updateEvent(event_id: String, event_name: String, event_address: String, event_start_time: Date, event_end_time: Date, event_description: String) {
         let db = Firestore.firestore()
 
@@ -105,5 +134,6 @@ class FirestoreManager: ObservableObject {
     init() {
         fetchUser()
         fetchMyEvents()
+        fetchInvitations()
     }
 }

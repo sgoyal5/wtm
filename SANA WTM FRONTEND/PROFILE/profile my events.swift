@@ -185,7 +185,7 @@ struct profile_my_events: View {
                 NavigationView{
                     
                     
-                    List(model.list) { item in
+                    List(model.myeventslist) { item in
                         HStack{
                             Button(action:{
                                 showingEditSheet.toggle()
