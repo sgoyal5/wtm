@@ -49,7 +49,6 @@ struct InvitationsDetailView: View {
             Text("Event Description: \(inv_description)")
             
             
-                    
                         
         }
         }

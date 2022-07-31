@@ -18,26 +18,26 @@
 //    @State private var rsvps: [rsvplist] = [
 //        rsvplist(username: "sarayuy", name: "Sarayu Yenumula", rsvp: "Yes", avatar: "sarayu"),
 //        rsvplist(username: "tanvipoondota", name: "Tanvi Poondota", rsvp: "No", avatar: "tanvi")
-//    
+//
 //    ]
-//                              
-//    
+//
+//
 //    @EnvironmentObject var viewRouter: ViewRouter
 //    var body: some View {
 //        ZStack{
 //            Color(red: 0.08235, green: 0.12549, blue: 0.12941)
 //                .ignoresSafeArea()
-//        
+//
 //        VStack{
-//            
+//
 //            HStack{
-//                
-//            
+//
+//
 //                Button(action:{
-//                    
+//
 //                    viewRouter.currentPage = .page1
-//                    
-//                    
+//
+//
 //                }){
 //                    Image(systemName: "arrow.left")
 //                        .resizable()
@@ -45,39 +45,39 @@
 //                        .aspectRatio(contentMode: .fill)
 //                        .frame(width:25, height: 25)
 //                        .padding()
-//                    
+//
 //                }
-//                
-//                   
-//    
+//
+//
+//
 //                Spacer()
-//                
+//
 //                Text("wtm")
-//                    
+//
 //                    .navigationTitle("wtm")
 //                    .font(.system(size: 30, weight: .bold))
 //                    .foregroundColor(.white)
-//                    
-//                    
-//                
+//
+//
+//
 //                Spacer()
 //                Text("SG")
 //                    .frame(width: 35, height: 35)
 //                    .padding()
 //                    .foregroundColor(.white)
 //                    .overlay(
-//                       
+//
 //                        Circle()
 //                            .stroke(.white, lineWidth: 2)
 //                            .frame(width: 60, height:100)
 //                            .foregroundColor(.white)
-//                    
+//
 //                            .padding(10)
 //                    )
-//                
-//                
+//
+//
 //            }
-//            
+//
 //            Text("Manage your Event")
 //                .foregroundColor(.white)
 //                .bold()
@@ -121,17 +121,17 @@
 //                        .fontWeight(.bold)
 //                    Text("@"+rsvps.username)
 //                        .foregroundColor(Color.gray)
-//                    
+//
 //                    }
 //                    Spacer()
 //                    Text(rsvps.rsvp)
 //                        .foregroundColor(.black)
-//                    
+//
 //                }
-//                
+//
 //            }
-//           
-//                
+//
+//
 //        }
 //        }
 //    }

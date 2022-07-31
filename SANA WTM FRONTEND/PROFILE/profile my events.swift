@@ -195,8 +195,8 @@ struct profile_my_events: View {
                                     .resizable()
                                     .frame(width: 30, height: 30)
                                 
-//                            }.fullScreenCover(isPresented: $showingSheet) {
-                            }.sheet(isPresented: $showingEditSheet) {
+                            }.fullScreenCover(isPresented: $showingEditSheet) {
+//                            }.sheet(isPresented: $showingEditSheet) {
                                 EditSheetView(id: item.id, name: item.event_name, address: item.event_address, start_time: item.event_start_time, end_time: item.event_end_time, description: item.event_description)
                             }
                         
