@@ -66,7 +66,6 @@ struct create_event: View {
         VStack{
             HStack{
                 
-            
                 Button(action:{
                     
                     viewRouter.currentPage = .page1

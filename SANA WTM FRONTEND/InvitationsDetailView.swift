@@ -48,7 +48,6 @@ struct InvitationsDetailView: View {
             Text(inv_end_time, style: .time)
             Text("Event Description: \(inv_description)")
             
-            
                         
         }
         }
