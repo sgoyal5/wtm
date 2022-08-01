@@ -207,22 +207,6 @@ struct profile_upcoming: View {
             
             Spacer()
             
-            HStack{
-                Spacer()
-                Button(action:{
-                    
-                    viewRouter.currentPage = .page4
-                    
-                    
-                }){
-                    Image(systemName: "plus.circle.fill")
-                        .resizable()
-                        .frame(width: 40, height: 40)
-                        .foregroundColor(.white)
-                        .padding()
-                    
-                }
-            }
             
             
         }

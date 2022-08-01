@@ -20,6 +20,7 @@
 		1C3BA6B1288AEF870043FD8E /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3BA6B0288AEF870043FD8E /* FirestoreManager.swift */; };
 		1CB2AE592893729100932262 /* EditSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB2AE582893729100932262 /* EditSheetView.swift */; };
 		1CB2AE5B2897063100932262 /* InvitationsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB2AE5A2897063100932262 /* InvitationsDetailView.swift */; };
+		57AB3B8A2898220400E24DE2 /* select button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AB3B892898220400E24DE2 /* select button.swift */; };
 		57C94292288E2708001CEA2A /* rsvp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C94291288E2708001CEA2A /* rsvp.swift */; };
 		57F2BC1928898849007E0349 /* SANA_WTM_FRONTENDApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F2BC1828898849007E0349 /* SANA_WTM_FRONTENDApp.swift */; };
 		57F2BC1B28898849007E0349 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F2BC1A28898849007E0349 /* ContentView.swift */; };
@@ -39,6 +40,7 @@
 		1C3BA6B0288AEF870043FD8E /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
 		1CB2AE582893729100932262 /* EditSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSheetView.swift; sourceTree = "<group>"; };
 		1CB2AE5A2897063100932262 /* InvitationsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationsDetailView.swift; sourceTree = "<group>"; };
+		57AB3B892898220400E24DE2 /* select button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "select button.swift"; sourceTree = "<group>"; };
 		57C94291288E2708001CEA2A /* rsvp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = rsvp.swift; sourceTree = "<group>"; };
 		57F2BC1528898849007E0349 /* SANA WTM FRONTEND.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SANA WTM FRONTEND.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		57F2BC1828898849007E0349 /* SANA_WTM_FRONTENDApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SANA_WTM_FRONTENDApp.swift; sourceTree = "<group>"; };
@@ -74,6 +76,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		57AB3B88289821D900E24DE2 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				1CB2AE5A2897063100932262 /* InvitationsDetailView.swift */,
+				57AB3B892898220400E24DE2 /* select button.swift */,
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 		57F2BC0C28898849007E0349 = {
 			isa = PBXGroup;
 			children = (
@@ -101,7 +112,7 @@
 				57C94291288E2708001CEA2A /* rsvp.swift */,
 				1C3BA6B0288AEF870043FD8E /* FirestoreManager.swift */,
 				1CB2AE582893729100932262 /* EditSheetView.swift */,
-				1CB2AE5A2897063100932262 /* InvitationsDetailView.swift */,
+				57AB3B88289821D900E24DE2 /* New Group */,
 				1C3BA69B288AEA390043FD8E /* GoogleService-Info.plist */,
 				57F2BC2C28898951007E0349 /* PROFILE */,
 				57F2BC1C2889884E007E0349 /* Assets.xcassets */,
@@ -214,6 +225,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57AB3B8A2898220400E24DE2 /* select button.swift in Sources */,
 				57F2BC1B28898849007E0349 /* ContentView.swift in Sources */,
 				57F2BC2728898932007E0349 /* MotherView.swift in Sources */,
 				57F2BC2B2889894E007E0349 /* Helper.swift in Sources */,
