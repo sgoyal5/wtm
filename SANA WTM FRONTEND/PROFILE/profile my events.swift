@@ -16,6 +16,7 @@ struct MyEvents: Identifiable {
     var event_start_time: Date
     var event_end_time: Date
     var event_description: String = ""
+    var bubbles_invited: [String] = [""]
 }
 
 struct profile_my_events: View {

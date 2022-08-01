@@ -19,7 +19,6 @@ struct Bubbles: Identifiable {
     var id: String = ""
     var bubble_name: String = ""
     var isselected: Bool
-    var selectedList = [String]()
 }
 
 struct create_event: View {
@@ -39,7 +38,8 @@ struct create_event: View {
     @State var description = ""
     @State var start_time = Date()
     @State var end_time = Date()
-    @State var bubbles_invited = [Bubbles]()
+    
+    @State var bubbles_selected = [String]()
     
     
     @State private var isExpanding = false
@@ -67,9 +67,7 @@ struct create_event: View {
             HStack{
                 
                 Button(action:{
-                    
                     viewRouter.currentPage = .page1
-                    
                     
                 }){
                     Image(systemName: "arrow.left")
@@ -121,10 +119,14 @@ struct create_event: View {
                         DisclosureGroup("Select Bubbles", isExpanded: $isExpanding){
                             
                             VStack{
-                                List(model.bubbleslist){ bubble in
+                                List(model.bubbleslist, id: \.id){ bubble in
                                     HStack{
-                                        Image(systemName: bubble.isselected ?  "checkmark.square"  : "square")
+                                        Image(systemName: "plus.circle.fill")
                                             .onTapGesture {
+                                                print("button pressed")
+                                                print(bubble.bubble_name)
+                                                //bubbles_selected.append(item.bubble_name)
+                                                bubbles_selected.append(bubble.bubble_name)
 //                                                bubble.isselected.toggle()
 //                                                selectedList.append(bubble.bubble_name)
                                             }
@@ -145,14 +147,13 @@ struct create_event: View {
                         DatePicker("End", selection: $end_time, in: Date()...)
                         TextField("Description", text: $description)
                             .frame(maxWidth: .infinity, alignment: .leading)
-                            
                         
                     }
                     Section{
                         Button(action: {
                             viewRouter.currentPage = .page1
                             
-                            firestoreManager.createEvent(event_name: eventname, event_address: address, event_start_time: start_time, event_end_time: end_time, event_description: description)
+                            firestoreManager.createEvent(event_name: eventname, event_address: address, event_start_time: start_time, event_end_time: end_time, event_description: description, bubbles_invited: bubbles_selected)
                             
                             //clears the text fields on click "create event"
                             eventname = ""

@@ -47,6 +47,7 @@ class FirestoreManager: ObservableObject {
     @Published var event_start_time: Date = Date()
     @Published var event_end_time: Date = Date()
     @Published var event_description: String = ""
+    @Published var bubbles_invited: [Any] = []
     
     
     //fetches events user has created
@@ -66,13 +67,56 @@ class FirestoreManager: ObservableObject {
                                 event_address: d["event_address"] as? String ?? "",
                                 event_start_time: (d["event_start_time"] as? Timestamp)?.dateValue() ?? Date(),
                                 event_end_time: (d["event_end_time"] as? Timestamp)?.dateValue() ?? Date(),
-                                event_description: d["event_description"] as? String ?? "")
+                                event_description: d["event_description"] as? String ?? "",
+                                bubbles_invited: d["bubbles_invited"] as? [String] ?? [])
                         }
                     }
                     }
                 }
             }
     }
+    
+    //sends new event data to firestore, creates new document
+    func createEvent(event_name: String, event_address: String, event_start_time: Date, event_end_time: Date, event_description: String, bubbles_invited: [String]) {
+        let db = Firestore.firestore()
+        
+        let newEvent = db.collection("users").document("tanvi_user").collection("tanvi_events").document()
+
+        newEvent.setData(["id": newEvent.documentID, "event_name" : event_name, "event_address" : event_address, "event_start_time": event_start_time, "event_end_time": event_end_time, "event_description": event_description, "bubbles_invited": bubbles_invited]) { error in
+            //check for errors
+        }
+    }
+    
+    
+    //updates existing document in firestore
+    func updateEvent(event_id: String, event_name: String, event_address: String, event_start_time: Date, event_end_time: Date, event_description: String) {
+        let db = Firestore.firestore()
+
+        db.collection("users").document("tanvi_user").collection("tanvi_events").document(event_id).updateData(["event_name": event_name, "event_address": event_address, "event_start_time": event_start_time, "event_end_time": event_end_time, "event_description": event_description])
+    }
+    
+
+    //deletes document in firestore
+    func deleteEvent(event_id: String) {
+        
+        let db = Firestore.firestore()
+        
+        db.collection("users").document("tanvi_user").collection("tanvi_events").document(event_id).delete()
+    }
+    
+    
+    @Published var bubbleslist = [Bubbles]()
+    
+    @Published var bubble_id: String = ""
+    @Published var bubble_name: String = ""
+    @Published var isselected: Bool = false
+
+    
+    
+    
+    
+    
+    
     
     @Published var invitationslist = [Invitations]()
     
@@ -110,42 +154,7 @@ class FirestoreManager: ObservableObject {
     }
     
     
-    //sends new event data to firestore, creates new document
-    func createEvent(event_name: String, event_address: String, event_start_time: Date, event_end_time: Date, event_description: String) {
-        let db = Firestore.firestore()
-        
-        let newEvent = db.collection("users").document("tanvi_user").collection("tanvi_events").document()
-
-        newEvent.setData(["id": newEvent.documentID, "event_name" : event_name, "event_address" : event_address, "event_start_time": event_start_time, "event_end_time": event_end_time, "event_description": event_description]) { error in
-            //check for errors
-        }
-    }
-    
-    
-    //updates existing document in firestore
-    func updateEvent(event_id: String, event_name: String, event_address: String, event_start_time: Date, event_end_time: Date, event_description: String) {
-        let db = Firestore.firestore()
-
-        db.collection("users").document("tanvi_user").collection("tanvi_events").document(event_id).updateData(["event_name": event_name, "event_address": event_address, "event_start_time": event_start_time, "event_end_time": event_end_time, "event_description": event_description])
-    }
-    
-
-    //deletes document in firestore
-    func deleteEvent(event_id: String) {
-        
-        let db = Firestore.firestore()
-        
-        db.collection("users").document("tanvi_user").collection("tanvi_events").document(event_id).delete()
-    }
-    
-    
-    @Published var bubbleslist = [Bubbles]()
-    
-    @Published var bubble_id: String = ""
-    @Published var bubble_name: String = ""
-    @Published var isselected: Bool = false
-
-    
+   
     func fetchMyBubbles() {
 
         let db = Firestore.firestore()
