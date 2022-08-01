@@ -121,6 +121,7 @@ class FirestoreManager: ObservableObject {
         }
     }
     
+    
     //updates existing document in firestore
     func updateEvent(event_id: String, event_name: String, event_address: String, event_start_time: Date, event_end_time: Date, event_description: String) {
         let db = Firestore.firestore()
