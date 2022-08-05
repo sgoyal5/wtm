@@ -9,7 +9,7 @@ import SwiftUI
 import FirebaseCore
 import FirebaseFirestore
 
-struct MyEvents: Identifiable {
+struct Event: Identifiable {
     var id: String = ""
     var event_name: String = ""
     var event_address: String = ""

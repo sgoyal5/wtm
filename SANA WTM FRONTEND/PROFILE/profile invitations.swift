@@ -9,15 +9,15 @@ import SwiftUI
 import FirebaseCore
 import FirebaseFirestore
 
-
-struct Invitations: Identifiable {
-    var id: String = ""
-    var inv_name: String = ""
-    var inv_address: String = ""
-    var inv_start_time: Date
-    var inv_end_time: Date
-    var inv_description: String = ""
-}
+//
+//struct Invitations: Identifiable {
+//    var id: String = ""
+//    var inv_name: String = ""
+//    var inv_address: String = ""
+//    var inv_start_time: Date
+//    var inv_end_time: Date
+//    var inv_description: String = ""
+//}
 
 struct profile_invitations: View {
     @State private var showingDetailSheet = false
@@ -180,26 +180,26 @@ struct profile_invitations: View {
                                 
 //                            }.fullScreenCover(isPresented: $showingSheet) {
                             }.sheet(isPresented: $showingDetailSheet) {
-                                InvitationsDetailView(id: item.id, inv_eventname: item.inv_name, inv_address: item.inv_address, inv_start_time: item.inv_start_time, inv_end_time: item.inv_end_time, inv_description: item.inv_description)
+                                InvitationsDetailView(id: item.id, event_eventname: item.event_name, event_address: item.event_address, event_start_time: item.event_start_time, event_end_time: item.event_end_time, event_description: item.event_description)
                             }
                         
                             Spacer()
                             
                             VStack{
-                                Text(item.inv_name)
+                                Text(item.event_name)
                                     .bold()
-                                Text("@" + item.inv_address)
+                                Text("@" + item.event_address)
                                     .frame(alignment: .leading)
                                     
-                                Text(item.inv_description)
+                                Text(item.event_description)
                             
                             }
                             
                             Spacer()
                             VStack{
                                 Spacer()
-                                Text(item.inv_start_time, style: .date)
-                                Text(item.inv_start_time, style: .time)
+                                Text(item.event_start_time, style: .date)
+                                Text(item.event_start_time, style: .time)
                                 Spacer()
                                 
                             }

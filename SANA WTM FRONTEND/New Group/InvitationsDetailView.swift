@@ -17,12 +17,12 @@ struct InvitationsDetailView: View {
     @EnvironmentObject var viewRouter: ViewRouter
         
     @State var id: String
-    @State var inv_eventname: String
-    @State var inv_address: String
+    @State var event_eventname: String
+    @State var event_address: String
 //    @State var selectbubble = ""
-    @State var inv_start_time: Date
-    @State var inv_end_time: Date
-    @State var inv_description: String
+    @State var event_start_time: Date
+    @State var event_end_time: Date
+    @State var event_description: String
     @State private var isSelected = false
     @State private var isSelected2 = false
     @State private var showAlert = false
@@ -87,7 +87,7 @@ struct InvitationsDetailView: View {
                         
                                 .padding()
                     Spacer()
-                    Text("Event Name: \(inv_eventname)")
+                    Text("Event Name: \(event_eventname)")
                         .foregroundColor(.white)
                         .bold()
                         .font(.system(size: 30, weight: .bold))
@@ -111,6 +111,7 @@ struct InvitationsDetailView: View {
                             isSelected.toggle()
                             if isSelected{
                                 isSelected2 = false
+                                firestoreManager.setRSVPyes(event_id: id)
                         }
                         
                         
@@ -121,6 +122,7 @@ struct InvitationsDetailView: View {
                             isSelected2.toggle()
                             if isSelected2{
                                 isSelected = false
+                                firestoreManager.setRSVPno(event_id: id)
                         }
                                 
                         
@@ -151,7 +153,7 @@ struct InvitationsDetailView: View {
                                     .frame(maxWidth: .infinity, alignment: .leading)
                                     
                                 
-                            Text("Event Address: \(inv_address)")
+                            Text("Event Address: \(event_address)")
                                     .foregroundColor(.black)
                                     .frame(maxWidth: .infinity, alignment: .leading)
                                     
@@ -175,7 +177,7 @@ struct InvitationsDetailView: View {
                                     .frame(maxWidth: .infinity, alignment: .leading)
                                     
                                     
-                            Text("Event Description: \(inv_description)")
+                            Text("Event Description: \(event_description)")
                                     .foregroundColor(.black)
                                     .frame(maxWidth: .infinity, alignment: .leading)
                                    
