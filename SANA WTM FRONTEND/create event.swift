@@ -126,7 +126,7 @@ struct create_event: View {
                                                 print("button pressed")
                                                 print(bubble.bubble_name)
                                                 //bubbles_selected.append(item.bubble_name)
-                                                bubbles_selected.append(bubble.bubble_name)
+                                                bubbles_selected.append(bubble.id)
 //                                                bubble.isselected.toggle()
 //                                                selectedList.append(bubble.bubble_name)
                                             }

@@ -78,14 +78,51 @@ class FirestoreManager: ObservableObject {
     
     //sends new event data to firestore, creates new document
     func createEvent(event_name: String, event_address: String, event_start_time: Date, event_end_time: Date, event_description: String, bubbles_invited: [String]) {
+        
         let db = Firestore.firestore()
+        print("\(bubbles_invited)")
         
         let newEvent = db.collection("users").document("tanvi_user").collection("tanvi_events").document()
 
         newEvent.setData(["id": newEvent.documentID, "event_name" : event_name, "event_address" : event_address, "event_start_time": event_start_time, "event_end_time": event_end_time, "event_description": event_description, "bubbles_invited": bubbles_invited]) { error in
             //check for errors
         }
+        
+        print(newEvent.documentID)
+                        
+        for bubble in bubbles_invited {
+            db.collection("bubbles").document(bubble).collection("bubblies").getDocuments() { (snapshot , err) in
+                    for document in snapshot!.documents {
+                        let ref = document.reference
+                        ref.collection("invitations").document("\(newEvent.documentID)").setData(["id": newEvent.documentID, "event_name" : event_name, "event_address" : event_address, "event_start_time": event_start_time, "event_end_time": event_end_time, "event_description": event_description]) { error in
+                            //check for errors
+                        }
+                    }
+                }
+
+        }
+        
+
+        
     }
+    
+//    func sendInvites(event_name: String, event_address: String, event_start_time: Date, event_end_time: Date, event_description: String, bubbles_invited: [String]) {
+//
+//        let db = Firestore.firestore()
+//
+//        for bubble in bubbles_invited {
+////        bubbles_invited.forEach(bubble) {
+//        db.collection("bubbles").document(bubble).collection("bubblies").getDocuments() { (snapshot , err) in
+//                for document in snapshot!.documents {
+//                    let ref = document.reference
+//                    ref.collection("invitations").document("\(newEvent.documentID)").setData(["id": newEvent.documentID, "event_name" : event_name, "event_address" : event_address, "event_start_time": event_start_time, "event_end_time": event_end_time, "event_description": event_description]) { error in
+//                        //check for errors
+//                    }
+//                }
+//            }
+//
+//    }
+//    }
     
     
     //updates existing document in firestore
@@ -175,6 +212,34 @@ class FirestoreManager: ObservableObject {
                 }
             }
     }
+    
+    func sendInvites(event_name: String, event_address: String, event_start_time: Date, event_end_time: Date, event_description: String, bubbles_invited: [String]) {
+
+        let db = Firestore.firestore().collection("bubbles")
+        
+        for bubble in bubbles_invited {
+            db.document(bubble).collection("bubblies").getDocuments() { snapshot , err in
+                    for document in snapshot!.documents {
+                        let ref = document.reference
+                        let invite = ref.collection("invitations").document()
+                        invite.setData(["id": invite.documentID, "event_name" : event_name, "event_address" : event_address, "event_start_time": event_start_time, "event_end_time": event_end_time, "event_description": event_description])
+                    }
+                }
+        }
+                                        }
+                                        
+        
+//        db.collection("bubbles").whereField("bubble_id", isEqualTo: bubble_id)
+//            .getDocuments() { (querySnapshot, err) in
+//                if let err = err {
+//                    print("Error getting documents: \(err)")
+//                } else {
+//                    for document in querySnapshot!.documents {
+//                        print("\(document.documentID) => \(document.data())")
+//                        return document.reference.path
+//                    }
+//                }
+//        }
     
     init() {
         fetchUser()
