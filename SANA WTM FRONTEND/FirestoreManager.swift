@@ -244,7 +244,7 @@ class FirestoreManager: ObservableObject {
     func setRSVPyes(event_id: String) {
         let db = Firestore.firestore()
         
-        db.collection("users").document("tanvi_user").collection("invitations").document(event_id).updateData(["responded": true, "rsvp": true])
+        db.collection("users").document("tanvi_user").collection("invitations").document(event_id).updateData(["responded": true, "rsvp": "yes"])
         
         
         
@@ -253,7 +253,7 @@ class FirestoreManager: ObservableObject {
     func setRSVPno(event_id: String) {
         let db = Firestore.firestore()
         
-        db.collection("users").document("tanvi_user").collection("invitations").document(event_id).updateData(["responded": true, "rsvp": false])
+        db.collection("users").document("tanvi_user").collection("invitations").document(event_id).updateData(["responded": true, "rsvp": "no"])
         
     }
     

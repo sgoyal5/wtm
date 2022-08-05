@@ -28,7 +28,6 @@ struct InvitationsDetailView: View {
     @State private var showAlert = false
     @State private var alertText = ""
    
-    
     var body: some View {
         
         ZStack{
