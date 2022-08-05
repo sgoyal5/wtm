@@ -138,16 +138,6 @@ struct profile_my_events: View {
                     .sheet(isPresented: $showSheet) {
                         ImagePicker(sourceType: .photoLibrary, selectedImage: self.$image)
                 }
-            
-            Button(action: {
-//                viewRouter.currentPage = .page1
-//                firestoreManager.sendInvites(bubble_id: "1wE1cFqWuQy9A0Dgn4vY")
-            }){
-                Text("send invites")
-            }
-                .foregroundColor(Color.red)
-                .font(.headline)
-                .padding()
           
             
             Text("EVENTS")
